@@ -1,0 +1,65 @@
+backend:
+  build: stack/backend/
+  container_name: backend-haven
+  volumes:
+    - ./backend/:/apps/booking-room
+  working_dir: /apps/booking-room
+  ports:
+    - 80:80
+  links:
+    - mysql
+    - redis
+  environment:
+    MYSQL_DATABASE: haven
+    MYSQL_USER: haven
+    MYSQL_PASSWORD: booking-haven@123456
+
+frontend:
+  build: stack/frontend
+  container_name: frontend-haven
+  working_dir: /apps/booking-room
+  environment:
+      - ENV=local
+      - APP_DIR=/apps/booking-room
+      - BUILD_SCRIPT=/home/app_script 
+  volumes:
+      - ./frontend:/apps/booking-room
+  expose:
+      - "8090"
+  ports:
+      - 8090:80
+
+frontend_dev:
+  build: stack/frontend_dev
+  container_name: frontend_dev-haven
+  working_dir: /apps/booking-room
+  environment:
+      - ENV=local
+      - APP_DIR=/apps/booking-room
+      - BUILD_SCRIPT=/home/app_script 
+  volumes:
+      - ./frontend:/apps/booking-room
+  expose:
+      - "3000"
+  ports:
+      - 3000:3000
+  command: /home/app_script/start.sh
+
+mysql:
+  image: mysql:5.7
+  container_name: mysql-haven
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: haven
+    MYSQL_USER: haven
+    MYSQL_PASSWORD: booking-haven@123456
+  volumes:
+    - ./stack/mysqldata:/var/lib/mysql
+  ports:
+    - 33067:3306
+
+redis:
+  image: redis:latest
+  container_name: redis-haven
+  ports:
+    - 6381:6379
