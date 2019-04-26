@@ -20,3 +20,5 @@ booking-room.code-workspace
 backend/vendor
 frontend/node_modules
 stack/mysqldata
+frontend/dist/
+frontend/build/
