@@ -23,8 +23,7 @@ class CreateServicesTable extends Migration
             $table->string('price', 20)->nullable();
             $table->string('unit', 20)->nullable();
             $table->text('detail')->nullable();
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
+            $table->timestamps();
             $table->integer('updated_by')->nullable();
 
             

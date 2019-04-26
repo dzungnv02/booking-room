@@ -24,7 +24,7 @@ class CreateBookingDetailTable extends Migration
             $table->tinyInteger('item_type')->comment('1:room; 2:service');
             $table->integer('quality')->nullable();
             $table->string('price', 255)->nullable();
-
+            $table->timestamps();
             $table->foreign('booking_id', 'book_detail')->references('id')->on('bookings')->onDelete('RESTRICT')->onUpdate('RESTRICT');
 
         });

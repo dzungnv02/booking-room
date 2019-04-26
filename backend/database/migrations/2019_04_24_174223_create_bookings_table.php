@@ -29,8 +29,7 @@ class CreateBookingsTable extends Migration
             $table->tinyInteger('payment_method');
             $table->string('prepaid', 15)->nullable();
             $table->string('postpaid', 15)->nullable();
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
+            $table->timestamps();
             $table->integer('updated_by')->nullable();
             $table->foreign('customer_id', 'cus_book')->references('id')->on('customers')->onDelete('RESTRICT')->onUpdate('RESTRICT');
 

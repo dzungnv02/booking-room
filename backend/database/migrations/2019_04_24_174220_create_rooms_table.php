@@ -23,8 +23,7 @@ class CreateRoomsTable extends Migration
             $table->text('dunnages')->nullable();
             $table->text('photos')->nullable();
             $table->tinyInteger('status');
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
+            $table->timestamps();
             $table->integer('updated_by')->nullable();
 
             
